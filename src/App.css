@@ -1,0 +1,63 @@
+.logo{
+  height: 60px;
+}
+.hero-area{
+ text-align: center;
+}
+.hero-area .form-box{
+ margin: 0 auto;
+}.hero-area form{
+ display: inline-block;
+}
+.activity,.hero-area,nav{
+  margin-bottom: 10vh;
+}
+.login-logo{
+  width: 200px;
+  margin:8vh auto;
+}
+.login-logo img{
+  width: 100%;
+}
+.login-box,.register-box{
+  width: 570px;
+  height: 457px;
+  margin: 2vh auto;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.event-page{
+  height: 100%;
+}
+.login-page{
+  background-color: #F8FAFC;
+  height: 100vh;
+}
+
+.event-image{
+  width: 150px;
+}
+.event-image img{
+  width: 100%;
+}
+.event{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 20px;
+  position: relative;
+}
+.button button{
+  position: absolute;
+  right: 15px;
+  bottom:15px;
+}
+.btn-spacing{
+  margin-left: 5px;
+}
