@@ -10,12 +10,21 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import EventTasks from './components/EventTasks/EventTasks';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 
 export const UserContext = createContext();
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      setLoggedInUser(user)
+    } else {
+      // No user is signed in.
+    }
+  });
   
   return (
     <UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const Activity = (props) => {
     const {name , image, color} = props;
-    console.log(color);
 
     return (
         <div class="card" style={{width: '18rem'}}>

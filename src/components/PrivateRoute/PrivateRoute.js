@@ -1,15 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '../../App';
-
-const PrivateRoute = ({children, ...rest}) => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    return (
-        <Route
+import * as firebase from "firebase/app";
+import "firebase/auth";
+const PrivateRoute = ({ children, ...rest }) => {
+  return (
+    <Route
       {...rest}
       render={({ location }) =>
-        loggedInUser.email ? (
+        firebase.auth().currentUser ? (
           children
         ) : (
           <Redirect
@@ -21,7 +19,7 @@ const PrivateRoute = ({children, ...rest}) => {
         )
       }
     />
-    );
+  );
 };
 
 export default PrivateRoute;

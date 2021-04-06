@@ -5,11 +5,14 @@ import Logo from '../../logos/Group 1329.png'
 
 const Register = () => {
     const {activitytype} = useParams();
+    // eslint-disable-next-line
     const [loggedInUser, setLoggedInUser ] = useContext(UserContext);
+    console.log(activitytype);
 
 
-    const handleNewRegistration = () => {
-        const name = loggedInUser.name;
+    const handleNewRegistration = (e) => {
+        e.preventDefault();
+        const name = loggedInUser.displayName;
         const email = loggedInUser.email;
         const date = document.getElementById('date').value;
         const details = document.getElementById('details').value;
@@ -27,10 +30,11 @@ const Register = () => {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(newRegistration)
-        })
-        .then(res => res.json())
+        }).then(response => response.json())
         .then(data => {
-            alert('Booking Success')
+            if (data) {
+                alert('Success');
+            }
         })
     }
 
@@ -54,7 +58,7 @@ const Register = () => {
                     <form>
                         <h3>Register as a Volunteer</h3>
                         <div class="form-group">
-                            <input type="text" placeholder="Full Name" defaultValue={loggedInUser.name} class="form-control" id="name"/>
+                            <input type="text" placeholder="Full Name" defaultValue={loggedInUser.displayName} class="form-control" id="name"/>
                         </div>
                         <div class="form-group">
                             <input type="email" placeholder="Username or Email" defaultValue={loggedInUser.email} class="form-control" id="email"/>
@@ -63,12 +67,12 @@ const Register = () => {
                             <input type="date" placeholder="Date" defaultValue = {new Date()} class="form-control" id="date"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Desicription" defaultValue={`Hi, I am ${loggedInUser.name}. I wants to work with you as a Volunteer` } class="form-control" id="details"/>
+                            <input type="text" placeholder="Desicription" defaultValue={`Hi, I am ${loggedInUser.displayName}. I wants to work with you as a Volunteer` } class="form-control" id="details"/>
                         </div>
                         <div class="form-group">
                             <input type="text" placeholder="Organize books at the library" defaultValue = {activitytype} class="form-control" id="task"/>
                         </div>
-                        <button onClick={handleNewRegistration} type="submit" class="btn btn-primary">Register</button>
+                        <button onClick={handleNewRegistration} class="btn btn-primary">Register</button>
                     </form>
                     </div>
                 </div>

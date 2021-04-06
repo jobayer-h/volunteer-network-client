@@ -4,15 +4,17 @@ import Event from './Event';
 import Logo from '../../logos/Group 1329.png'
 import { UserContext } from '../../App';
 import { useEffect } from 'react';
+import { handleLogout } from '../nav/Nav';
 
 const EventTasks = () => {
+    // eslint-disable-next-line
     const [loggedInUser, setLoggedInUser ] = useContext(UserContext);
     const [events, setEvents] = useState([]);
     useEffect(() =>{
         fetch('https://volunteer-react.herokuapp.com/allevents?email='+loggedInUser.email)
         .then(res => res.json())
         .then(data => setEvents(data))
-    },[])
+    })
 
     return (
     <div className="login-page event-page">
@@ -33,7 +35,8 @@ const EventTasks = () => {
                     <Link className="nav-link" to="/">Donation</Link>
                     <Link className="nav-link" to="/events">Events</Link>
                     <Link className="nav-link" to="/">Blog</Link>
-                    <strong className="nav-link">{loggedInUser.name}</strong>
+                    <strong className="nav-link">{loggedInUser.displayName}</strong>
+                    <Link onClick={handleLogout} className="btn btn-dark btn-spacing" to="/">Log Out</Link>
                     </div>                    
                 </div>
             </nav>

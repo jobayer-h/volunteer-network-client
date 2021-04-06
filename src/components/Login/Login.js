@@ -14,18 +14,13 @@ const Login = () => {
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
 
-    
+    // eslint-disable-next-line
     const [loggedInUser, setLoggedInUser ] = useContext(UserContext);
     const handleLogin = () => {
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(googleProvider).then(function(result) {
             const user = result.user;
-            const {displayName , email} = user;
-            const newLogedinUser ={
-                name : displayName,
-                email : email
-            }
-            setLoggedInUser(newLogedinUser);
+            setLoggedInUser(user);
             history.replace(from);
         }).catch(function(error) {
             const errorMessage = error.message;
